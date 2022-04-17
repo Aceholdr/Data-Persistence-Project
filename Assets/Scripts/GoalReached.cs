@@ -21,6 +21,7 @@ public class GoalReached : MonoBehaviour
         
     }
 
+    // Plays a sound when reaching the goal
     private void OnTriggerEnter(Collider other)
     {
         goalAudio.PlayOneShot(goalClip);

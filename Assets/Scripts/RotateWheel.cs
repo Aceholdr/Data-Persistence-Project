@@ -22,6 +22,7 @@ public class RotateWheel : MonoBehaviour
         RotateFromMiddle();
     }
 
+    // Rotates the cog wheel from its center
     void RotateFromMiddle()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -36,6 +37,7 @@ public class RotateWheel : MonoBehaviour
             transform.Rotate(rotate * Time.deltaTime * speed * rotateDirection);
         }
 
+        // Switches spin direction every time space is pressed
         if (Input.GetKeyUp(KeyCode.Space))
         {
             wheelSource.Stop();

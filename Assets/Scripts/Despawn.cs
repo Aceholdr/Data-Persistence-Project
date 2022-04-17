@@ -6,18 +6,7 @@ public class Despawn : MonoBehaviour
 {
     public static int fallenCounter;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Destoys the wheel
     private void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);

@@ -15,6 +15,7 @@ public class RotateMontain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Rotates the mountain in the start screen
         transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * speed);
     }
 }

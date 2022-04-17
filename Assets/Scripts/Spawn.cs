@@ -26,6 +26,7 @@ public class Spawn : MonoBehaviour
         LevelFailedOrPassed();
     }
 
+    // Spawns the wheels in a set amount of time
     IEnumerator SpawnCylinder()
     {
         for(int i = 0; i < spawnPos.Length; i++)
@@ -41,15 +42,13 @@ public class Spawn : MonoBehaviour
         Despawn.fallenCounter = 0;
         GoalReached.Counter = 0;
         StartCoroutine(SpawnCylinder());
-
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
     }
 
+    // Decides if one wheel has fallen off, or if everyone has reached the goal
     void LevelFailedOrPassed()
     {
         // If the level has been failed
-        if (Despawn.fallenCounter > GoalReached.Counter)
+        if (Despawn.fallenCounter >= 1)
         {
             levelFailed.SetActive(true);
 
@@ -74,6 +73,7 @@ public class Spawn : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+        // The last level
         else if(GoalReached.Counter == spawnPos.Length)
         {
             lastLevel.SetActive(true);
@@ -84,6 +84,7 @@ public class Spawn : MonoBehaviour
             }
         }
 
+        // Every instance gives you the option to quit
         if(levelFailed.activeSelf == true || levelPassed.activeSelf == true || 
             lastLevel.activeSelf == true)
         {
