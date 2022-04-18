@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
+
+    public int BeatenLevel;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,8 +25,29 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public int beatenLevel;
+        public int beatenLevel = 0;
     }
 
-    //Save and Load...
+    public void SaveProgress()
+    {
+        SaveData data = new SaveData();
+        data.beatenLevel = BeatenLevel;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadProgress()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            BeatenLevel = data.beatenLevel;
+        }
+    }
 }

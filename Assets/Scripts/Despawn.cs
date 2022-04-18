@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class Despawn : MonoBehaviour
 {
-    public static int fallenCounter;
+    public static int FallenCounter;
+    private AudioSource despawnAudio;
+    public AudioClip despawnClip;
+
+    private void Start()
+    {
+        despawnAudio = GetComponent<AudioSource>();
+    }
 
     // Destoys the wheel
     private void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);
-        fallenCounter++;
+        FallenCounter++;
+
+        if(FallenCounter > GoalReached.Counter)
+        {
+            despawnAudio.PlayOneShot(despawnClip);
+        }
     }
 }

@@ -897,6 +897,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
+      propertyPath: fallClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
       propertyPath: lastLevel
       value: 
       objectReference: {fileID: 1508761061}

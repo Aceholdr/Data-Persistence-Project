@@ -14,9 +14,15 @@ public class Spawn : MonoBehaviour
     public GameObject lastLevel;
     public GameObject exitToMenu;
 
+    private AudioSource levelAudioSource;
+    public AudioClip nextLevelSound;
+    public AudioClip backToMenuSound;
+    public AudioClip retrySound;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelAudioSource = GetComponent<AudioSource>();
         StartLevel();
     }
 
@@ -39,7 +45,7 @@ public class Spawn : MonoBehaviour
 
     void StartLevel()
     {
-        Despawn.fallenCounter = 0;
+        Despawn.FallenCounter = 0;
         GoalReached.Counter = 0;
         StartCoroutine(SpawnCylinder());
     }
@@ -48,12 +54,13 @@ public class Spawn : MonoBehaviour
     void LevelFailedOrPassed()
     {
         // If the level has been failed
-        if (Despawn.fallenCounter >= 1)
+        if (Despawn.FallenCounter > GoalReached.Counter)
         {
             levelFailed.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.R))
             {
+                levelAudioSource.PlayOneShot(retrySound);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -64,12 +71,16 @@ public class Spawn : MonoBehaviour
         {
             levelPassed.SetActive(true);
 
+            SaveSaveData();
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                levelAudioSource.PlayOneShot(nextLevelSound);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
+                levelAudioSource.PlayOneShot(retrySound);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -77,9 +88,11 @@ public class Spawn : MonoBehaviour
         else if(GoalReached.Counter == spawnPos.Length)
         {
             lastLevel.SetActive(true);
+            SaveSaveData();
 
             if (Input.GetKeyDown(KeyCode.R))
             {
+                levelAudioSource.PlayOneShot(retrySound);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -90,7 +103,21 @@ public class Spawn : MonoBehaviour
         {
             exitToMenu.SetActive(true);
 
-            // Implement Menu function
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                levelAudioSource.PlayOneShot(backToMenuSound);
+                SceneManager.LoadScene(0);
+            }
         }
+    }
+
+    // Marks the current level as beaten
+    void SaveSaveData()
+    {
+        if(SaveManager.Instance.BeatenLevel < SceneManager.GetActiveScene().buildIndex)
+        {
+            SaveManager.Instance.BeatenLevel++;
+            SaveManager.Instance.SaveProgress();
+        }     
     }
 }

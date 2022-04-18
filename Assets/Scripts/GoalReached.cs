@@ -26,6 +26,5 @@ public class GoalReached : MonoBehaviour
     {
         goalAudio.PlayOneShot(goalClip);
         Counter++;
-        Debug.Log(Counter);
     }
 }

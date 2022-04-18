@@ -1030,34 +1030,6 @@ PrefabInstance:
       propertyPath: levelPassed
       value: 
       objectReference: {fileID: 1410871216}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: timeBetweenSpawns
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.data[0].x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.data[1].x
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.data[2].x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.data[3].x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697427035315093793, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
-      propertyPath: spawnPos.Array.data[3].y
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 1697427035315093806, guid: 8e105cfea64f3ab4bae1b5709b205ed7, type: 3}
       propertyPath: m_Name
       value: SpawnPoints
